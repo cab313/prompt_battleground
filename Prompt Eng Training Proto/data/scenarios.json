@@ -1,0 +1,176 @@
+[
+    {
+        "id": "scenario_1",
+        "title": "Instagram Story Posting Issue",
+        "description": "An Instagram user reported they are unable to post to their story. Use prompt engineering to help assign appropriate labels and categorize this feedback for the support team.",
+        "criteria": [
+            "Correctly identify the issue type (bug, feature request, user error, etc.)",
+            "Assign appropriate category/label",
+            "Determine severity/priority level",
+            "Suggest which team should handle this"
+        ],
+        "data": "I've been trying to post to my story for the last 2 hours but nothing happens. When I tap the 'Share to Story' button, it just freezes and then closes the app. I tried reinstalling but same problem. Please help ASAP, I need to post for my business!",
+        "hint": "Define the role clearly (e.g., 'You are a support ticket classifier') and specify the exact output format with all required labels.",
+        "difficulty": "easy",
+        "poorPrompt": "Classify this feedback.",
+        "poorPromptIssues": [
+            "No role definition",
+            "No output format specified",
+            "Too vague - doesn't specify what to classify",
+            "Missing context about what classifications to use"
+        ]
+    },
+    {
+        "id": "scenario_2",
+        "title": "Profile Notification Request",
+        "description": "Classify this user feedback and extract key information to route it to the appropriate team with correct priority and labels.",
+        "criteria": [
+            "Identify feedback type (feature request, bug, inquiry, etc.)",
+            "Extract user sentiment and urgency",
+            "Assign priority level (P0/Critical, P1/High, P2/Medium, P3/Low)",
+            "Recommend appropriate response category"
+        ],
+        "data": "I am reaching out to kindly request the activation of a feature that would allow me to receive a notification whenever someone visits my personal profile. This feature is very important and necessary for me, and I would greatly like your support in providing it on my account as soon as possible. Thank you in advance for your support and understanding.",
+        "hint": "Be specific about output format. Consider using JSON structure with fields like: type, sentiment, priority, category, routing_team.",
+        "difficulty": "easy",
+        "poorPrompt": "Tell me what this person wants.",
+        "poorPromptIssues": [
+            "No structured output format",
+            "Doesn't ask for classification or labels",
+            "Missing priority assessment",
+            "No routing recommendation"
+        ]
+    },
+    {
+        "id": "scenario_3",
+        "title": "Multi-Issue Feedback Classification",
+        "description": "This user report contains multiple issues. Your prompt must help identify ALL issues mentioned, classify each one separately, and prioritize them appropriately.",
+        "criteria": [
+            "Identify all distinct issues in the feedback",
+            "Classify each issue separately",
+            "Assign individual priority levels",
+            "Extract actionable information for each issue",
+            "Recommend routing for multiple teams if needed"
+        ],
+        "data": "Hi, I'm having several problems with the app. First, my messages aren't sending - they just show a spinning circle forever. Second, I noticed my follower count keeps changing randomly, going up and down by hundreds. Also, when I try to edit my bio, it says 'error' and won't save. The bio thing isn't urgent but the messages are really annoying because I can't talk to anyone. Oh and the app crashes every time I try to use filters on my stories.",
+        "hint": "Your prompt should explicitly ask the AI to parse multiple issues, number them, and provide structured output for each one separately.",
+        "difficulty": "medium",
+        "poorPrompt": "What are the problems mentioned in this feedback?",
+        "poorPromptIssues": [
+            "Doesn't ask for classification of each issue",
+            "No priority assignment requested",
+            "No structured output format",
+            "Doesn't ask for routing recommendations"
+        ]
+    },
+    {
+        "id": "scenario_4",
+        "title": "Ambiguous Feedback Interpretation",
+        "description": "This feedback is vague and unclear. Create a prompt that helps extract maximum useful information, make intelligent inferences about the actual problem, and properly categorize it despite the ambiguity.",
+        "criteria": [
+            "Extract what information IS available",
+            "Make reasonable inferences about the actual issue",
+            "Identify what additional information is needed",
+            "Still provide useful classification despite ambiguity",
+            "Flag the feedback as requiring follow-up"
+        ],
+        "data": "The thing isn't working right. I tried it like 3 times and it's still broken. This is so frustrating. Can you just fix it already? Everyone else can do it fine but not me apparently.",
+        "hint": "Instruct the AI to work with incomplete information, make explicit its assumptions, and ask clarifying questions that support should follow up with.",
+        "difficulty": "hard",
+        "poorPrompt": "Fix this problem.",
+        "poorPromptIssues": [
+            "Assumes AI can fix problems directly (wrong role)",
+            "Provides no data to analyze",
+            "No classification or triage requested",
+            "Completely misunderstands the task"
+        ]
+    },
+    {
+        "id": "scenario_5",
+        "title": "Angry User Feedback Triage",
+        "description": "This is an emotionally charged complaint. Your prompt must help extract the actual technical issue, assess severity correctly despite the emotional language, and recommend appropriate handling.",
+        "criteria": [
+            "Separate emotion from actual technical issues",
+            "Identify root cause vs symptoms",
+            "Assess true priority (not just based on anger level)",
+            "Recommend escalation path and response strategy",
+            "Extract any account-specific details mentioned"
+        ],
+        "data": "ARE YOU KIDDING ME?!?! I've had this account for 5 YEARS and you just DELETED all my photos from last month!!! I had my wedding photos on there that I didn't back up anywhere else. This is UNACCEPTABLE. I've been a paying subscriber for 3 years and THIS is how you treat customers?? I want them back NOW or I'm suing. My account is @weddingmemories2024. FIX THIS IMMEDIATELY!!!",
+        "hint": "Your prompt should instruct the AI to identify: actual issue (data loss), severity (high - data loss for paying customer), emotion level, legal threat, account details, and recommended escalation path.",
+        "difficulty": "hard",
+        "poorPrompt": "This user is angry. Calm them down.",
+        "poorPromptIssues": [
+            "Focuses on emotion instead of the technical issue",
+            "Doesn't extract the actual problem (data loss)",
+            "No classification or priority assessment",
+            "Misses critical details like account info and legal threat"
+        ]
+    },
+    {
+        "id": "scenario_6",
+        "title": "Feature vs Bug Classification",
+        "description": "Some feedback is unclear whether it's reporting a bug or requesting a feature. Create a prompt that accurately distinguishes between the two and provides proper classification with reasoning.",
+        "criteria": [
+            "Determine if it's a bug, feature request, or both",
+            "Provide clear reasoning for the classification",
+            "Identify if expected behavior vs actual behavior is described",
+            "Assess if this is a limitation or an error",
+            "Recommend appropriate team and action"
+        ],
+        "data": "Why can't I post videos longer than 60 seconds to my feed? My friend has an account and she can post 10-minute videos. I try to post longer videos but it just cuts them off at 60 seconds. This doesn't make any sense and I need to post my full workout videos for my fitness channel. Is this a bug with my account?",
+        "hint": "Guide the AI to look for indicators: is there a discrepancy between accounts (suggests bug), or is the user asking for new capability (feature request)? Check for 'expected vs actual' language.",
+        "difficulty": "medium",
+        "poorPrompt": "Is this a bug or feature request?",
+        "poorPromptIssues": [
+            "Doesn't provide the feedback data to analyze",
+            "No reasoning requested",
+            "No structured output",
+            "Missing team routing recommendation"
+        ]
+    },
+    {
+        "id": "scenario_7",
+        "title": "Spam vs Legitimate Feedback Detection",
+        "description": "Not all feedback is legitimate. Create a prompt that can identify potential spam, bot-generated messages, or malicious reports while being careful not to dismiss genuine user concerns.",
+        "criteria": [
+            "Assess if feedback appears legitimate or spam",
+            "Identify red flags (repetitive patterns, suspicious links, etc.)",
+            "If legitimate, still classify the actual issue",
+            "Provide confidence score on spam assessment",
+            "Recommend whether to route to support or flag for review"
+        ],
+        "data": "Hello dear Instagram support team! I am very nice user who have problem with account. Please to click this link to verify account security: bit.ly/totally-not-phishing. Many thanks for excellent service. Please respond quick as possible. Best regards, Definitely Real User.",
+        "hint": "Instruct the AI to check for: unnatural language patterns, suspicious URLs, generic greetings, urgency tactics, and other spam indicators. Ask for explicit spam probability.",
+        "difficulty": "medium",
+        "poorPrompt": "Is this spam?",
+        "poorPromptIssues": [
+            "Binary question with no analysis depth",
+            "Doesn't ask for red flag identification",
+            "No confidence score requested",
+            "Missing routing recommendation"
+        ]
+    },
+    {
+        "id": "scenario_8",
+        "title": "Accessibility Issue Identification",
+        "description": "Some user feedback relates to accessibility problems that require special handling and priority. Create a prompt that identifies accessibility issues and ensures they're properly flagged and prioritized.",
+        "criteria": [
+            "Identify if this is an accessibility-related issue",
+            "Determine which accessibility category (visual, motor, cognitive, etc.)",
+            "Assess impact on user's ability to use the platform",
+            "Assign appropriate priority (accessibility issues often need escalation)",
+            "Recommend accessibility team involvement"
+        ],
+        "data": "I'm a blind user who relies on VoiceOver to use Instagram. Recently the app updated and now the screen reader doesn't announce image descriptions anymore. It just says 'image' for everything. This makes the app completely unusable for me since I can't tell what photos are being shown. I also can't navigate to the comments section anymore because the buttons aren't being read correctly. Please fix this, I really want to stay connected with my friends.",
+        "hint": "Your prompt should make the AI aware of accessibility importance and ensure proper categorization as accessibility bug with high priority due to complete feature loss for the user.",
+        "difficulty": "hard",
+        "poorPrompt": "Help this user with their screen reader problem.",
+        "poorPromptIssues": [
+            "Doesn't recognize it as an accessibility issue requiring special handling",
+            "No classification or priority assessment",
+            "No category identification (visual accessibility)",
+            "Missing escalation recommendation"
+        ]
+    }
+]

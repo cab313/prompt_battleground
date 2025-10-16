@@ -1,0 +1,266 @@
+/* Playground CSS - Prompt Playground Specific Styles */
+
+/* Playground Header */
+.playground-header {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+    position: relative;
+}
+
+.playground-header h1 {
+    margin-bottom: var(--spacing-sm);
+}
+
+.playground-header .subtitle {
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-lg);
+    font-style: italic;
+}
+
+/* Playground Layout */
+.playground-layout {
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: var(--spacing-xl);
+}
+
+.playground-main {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.playground-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+/* Playground Editor */
+.playground-editor {
+    background-color: var(--color-bg-medium);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    box-shadow: var(--shadow-lg);
+}
+
+#playground-prompt {
+    min-height: 250px;
+    font-family: var(--font-mono);
+    font-size: var(--font-size-md);
+    line-height: 1.6;
+    background-color: var(--color-bg-dark);
+    border: 3px solid var(--color-border);
+    transition: all var(--transition-fast);
+}
+
+#playground-prompt:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+}
+
+.playground-actions {
+    display: flex;
+    gap: var(--spacing-md);
+    justify-content: center;
+    margin-top: var(--spacing-md);
+}
+
+/* Playground Feedback Section */
+.playground-feedback {
+    background-color: var(--color-bg-medium);
+    border: 2px solid var(--color-primary);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    box-shadow: var(--shadow-lg);
+    animation: slideInUp var(--transition-normal);
+}
+
+.playground-feedback h3 {
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+    color: var(--color-primary);
+}
+
+.feedback-card {
+    background-color: var(--color-bg-light);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+}
+
+.feedback-card h4 {
+    margin-bottom: var(--spacing-md);
+    font-size: var(--font-size-lg);
+}
+
+.feedback-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.feedback-card li {
+    padding: var(--spacing-sm) 0;
+    padding-left: var(--spacing-lg);
+    position: relative;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+}
+
+.feedback-card li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--color-primary);
+    font-weight: 900;
+    font-size: 1.2rem;
+}
+
+/* Quality Score Display */
+.quality-score {
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, var(--color-bg-light) 100%);
+    border: 2px solid var(--color-accent);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+}
+
+.quality-score h4 {
+    margin-bottom: var(--spacing-md);
+    color: var(--color-accent);
+}
+
+.score-display-pg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-md);
+    margin: var(--spacing-lg) 0;
+}
+
+.score-value-pg {
+    font-size: 4rem;
+    font-weight: 900;
+    color: var(--color-accent);
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+    line-height: 1;
+}
+
+.score-max-pg {
+    font-size: var(--font-size-xl);
+    color: var(--color-text-muted);
+}
+
+.score-label-pg {
+    font-size: var(--font-size-md);
+    color: var(--color-text-secondary);
+    font-weight: 600;
+    margin-top: var(--spacing-sm);
+}
+
+/* Improved Version Section */
+.improved-version {
+    background-color: rgba(255, 215, 0, 0.05);
+    border: 2px solid var(--color-accent);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-lg);
+    margin-top: var(--spacing-lg);
+}
+
+.improved-version h4 {
+    margin-bottom: var(--spacing-md);
+}
+
+/* Tips List */
+.tips-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.tip-item {
+    background-color: var(--color-bg-light);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-sm);
+    border-left: 3px solid var(--color-primary);
+    font-size: var(--font-size-sm);
+    line-height: 1.6;
+}
+
+.tip-item strong {
+    color: var(--color-primary);
+    display: block;
+    margin-bottom: var(--spacing-xs);
+}
+
+/* History List */
+.history-list-pg {
+    max-height: 400px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.history-item-pg {
+    background-color: var(--color-bg-light);
+    padding: var(--spacing-sm);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-border);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    font-size: var(--font-size-sm);
+}
+
+.history-item-pg:hover {
+    border-color: var(--color-primary);
+    transform: translateX(5px);
+}
+
+.history-item-score {
+    font-weight: 700;
+    color: var(--color-accent);
+}
+
+.history-item-date {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+    margin-top: var(--spacing-xs);
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1024px) {
+    .playground-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .playground-sidebar {
+        order: -1;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .playground-editor {
+        padding: var(--spacing-md);
+    }
+
+    .playground-feedback {
+        padding: var(--spacing-md);
+    }
+
+    .score-value-pg {
+        font-size: 3rem;
+    }
+
+    .playground-actions {
+        flex-direction: column;
+    }
+
+    .playground-actions button {
+        width: 100%;
+    }
+}

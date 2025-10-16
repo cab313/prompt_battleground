@@ -1,0 +1,512 @@
+/* Responsive CSS - Mobile and Tablet Styles */
+
+/* Tablet Styles (max-width: 1024px) */
+@media screen and (max-width: 1024px) {
+    .screen-content {
+        padding: var(--spacing-md);
+    }
+
+    .battle-content {
+        flex-direction: column;
+    }
+
+    .battle-sidebar {
+        width: 100%;
+        border-left: none;
+        border-top: 2px solid var(--color-border);
+    }
+
+    .lobby-content {
+        grid-template-columns: 1fr;
+    }
+
+    .lobby-sidebar {
+        order: -1;
+    }
+
+    .profile-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .leaderboard-header,
+    .leaderboard-row {
+        grid-template-columns: 80px 1fr 100px 100px;
+        gap: var(--spacing-sm);
+    }
+
+    .leaderboard-header .stat-col:nth-child(5),
+    .leaderboard-header .stat-col:nth-child(6),
+    .leaderboard-row .stat-col:nth-child(5),
+    .leaderboard-row .stat-col:nth-child(6) {
+        display: none;
+    }
+
+    .stat-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .achievement-grid {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    }
+}
+
+/* Mobile Styles (max-width: 768px) */
+@media screen and (max-width: 768px) {
+    :root {
+        --font-size-3xl: 2rem;
+        --font-size-2xl: 1.5rem;
+        --font-size-xl: 1.25rem;
+    }
+
+    h1 {
+        font-size: var(--font-size-2xl);
+    }
+
+    h2 {
+        font-size: var(--font-size-xl);
+    }
+
+    h3 {
+        font-size: var(--font-size-lg);
+    }
+
+    .screen {
+        padding: var(--spacing-sm);
+    }
+
+    .screen-content {
+        padding: var(--spacing-sm);
+    }
+
+    /* HUD Adjustments */
+    .hud-top {
+        flex-direction: column;
+        gap: var(--spacing-md);
+        padding: var(--spacing-sm);
+    }
+
+    .hud-left,
+    .hud-center,
+    .hud-right {
+        width: 100%;
+        justify-content: space-around;
+    }
+
+    .timer {
+        font-size: 2rem;
+    }
+
+    /* Registration Form */
+    .registration-form {
+        padding: var(--spacing-lg);
+    }
+
+    .avatar-grid {
+        grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+    }
+
+    .avatar-option {
+        width: 60px;
+        height: 60px;
+    }
+
+    /* Scenario Container */
+    .scenario-container {
+        padding: var(--spacing-lg);
+    }
+
+    .scenario-title {
+        font-size: var(--font-size-xl);
+    }
+
+    .scenario-description {
+        font-size: var(--font-size-md);
+    }
+
+    /* Prompt Editor */
+    #prompt-input {
+        min-height: 200px;
+        font-size: var(--font-size-sm);
+    }
+
+    .editor-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-sm);
+    }
+
+    /* Action Buttons */
+    .action-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .action-buttons button {
+        width: 100%;
+    }
+
+    /* Score Display */
+    .score-value {
+        font-size: 4rem;
+    }
+
+    .score-display {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+
+    /* Breakdown Grid */
+    .breakdown-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Leaderboard */
+    .leaderboard-filters {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .filter-btn {
+        width: 100%;
+    }
+
+    .leaderboard-header,
+    .leaderboard-row {
+        grid-template-columns: 60px 1fr 80px;
+        font-size: var(--font-size-xs);
+    }
+
+    .leaderboard-header .level-col,
+    .leaderboard-header .stat-col:not(:nth-child(4)),
+    .leaderboard-row .level-col,
+    .leaderboard-row .stat-col:not(:nth-child(4)) {
+        display: none;
+    }
+
+    .player-avatar-small {
+        width: 30px;
+        height: 30px;
+    }
+
+    .rank-col {
+        font-size: var(--font-size-md);
+    }
+
+    /* Profile Header */
+    .profile-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .avatar-large {
+        width: 100px;
+        height: 100px;
+    }
+
+    /* Lobby Header */
+    .lobby-header {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+
+    /* Stats Grid */
+    .stat-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Battle History */
+    .history-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-sm);
+    }
+
+    .history-score {
+        text-align: left;
+    }
+
+    /* Next Actions */
+    .next-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .next-actions button {
+        width: 100%;
+    }
+
+    /* Power-Ups Grid */
+    .power-ups-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Achievement Grid */
+    .achievement-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Tutorial Container */
+    .tutorial-container {
+        padding: var(--spacing-lg);
+    }
+
+    .tutorial-controls {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+
+    .tutorial-controls button {
+        width: 100%;
+    }
+
+    /* Buttons */
+    .btn-large {
+        padding: var(--spacing-md) var(--spacing-lg);
+        font-size: var(--font-size-md);
+    }
+
+    /* Modal */
+    .modal-content {
+        width: 95%;
+        padding: var(--spacing-lg);
+    }
+
+    /* Toast Notifications */
+    .notification-toast {
+        right: var(--spacing-sm);
+        left: var(--spacing-sm);
+        min-width: auto;
+    }
+}
+
+/* Small Mobile (max-width: 480px) */
+@media screen and (max-width: 480px) {
+    :root {
+        --font-size-3xl: 1.5rem;
+        --font-size-2xl: 1.25rem;
+    }
+
+    .game-title {
+        font-size: 2rem;
+    }
+
+    .subtitle {
+        font-size: var(--font-size-md);
+    }
+
+    .scenario-title {
+        font-size: var(--font-size-lg);
+    }
+
+    .score-value {
+        font-size: 3rem;
+    }
+
+    .timer {
+        font-size: 1.5rem;
+    }
+
+    .round-info .value,
+    .score-info .value,
+    .xp-display .value,
+    .level-display .value {
+        font-size: var(--font-size-xl);
+    }
+
+    .stat-value {
+        font-size: var(--font-size-xl);
+    }
+
+    .breakdown-value {
+        font-size: var(--font-size-lg);
+    }
+
+    /* Compact Padding */
+    .scenario-container,
+    .crafting-container,
+    .results-container,
+    .evaluation-container {
+        padding: var(--spacing-md);
+    }
+
+    .registration-form {
+        padding: var(--spacing-md);
+    }
+
+    /* Sidebar Sections */
+    .sidebar-section {
+        padding: var(--spacing-sm);
+    }
+
+    /* Avatar Grid */
+    .avatar-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .avatar-option {
+        width: 50px;
+        height: 50px;
+    }
+
+    /* Achievement Badge */
+    .achievement-badge {
+        padding: var(--spacing-sm);
+    }
+
+    .achievement-icon {
+        font-size: 2rem;
+    }
+
+    /* Power-Up Card */
+    .powerup-card {
+        padding: var(--spacing-sm);
+    }
+
+    .powerup-icon {
+        font-size: 1.5rem;
+    }
+}
+
+/* Landscape Mobile (max-height: 500px) */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+    .screen {
+        padding: var(--spacing-sm);
+    }
+
+    .scenario-container {
+        max-width: 100%;
+        padding: var(--spacing-md);
+    }
+
+    #prompt-input {
+        min-height: 150px;
+    }
+
+    .battle-sidebar {
+        display: none;
+    }
+
+    .hud-top {
+        padding: var(--spacing-xs) var(--spacing-sm);
+    }
+
+    .timer {
+        font-size: 1.5rem;
+    }
+
+    .modal-content {
+        max-height: 90vh;
+    }
+}
+
+/* Large Desktop (min-width: 1440px) */
+@media screen and (min-width: 1440px) {
+    .screen-content {
+        max-width: 1600px;
+    }
+
+    .battle-content {
+        max-width: 1800px;
+    }
+
+    .battle-sidebar {
+        width: 350px;
+    }
+
+    .lobby-sidebar {
+        width: 400px;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .screen {
+        position: static;
+        padding: 0;
+    }
+
+    .screen:not(.active) {
+        display: none;
+    }
+
+    .battle-hud,
+    .battle-sidebar,
+    .lobby-sidebar,
+    .profile-sidebar,
+    button,
+    .action-buttons,
+    .tutorial-controls,
+    .leaderboard-filters {
+        display: none;
+    }
+
+    body {
+        background: white;
+        color: black;
+    }
+
+    .scenario-container,
+    .results-container,
+    .profile-header,
+    .stats-dashboard,
+    .leaderboard-table {
+        border: 1px solid black;
+        page-break-inside: avoid;
+    }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .pulse,
+    .bounce,
+    .float,
+    .glow,
+    .rotate,
+    .glitch,
+    .neon-glow,
+    .heartbeat {
+        animation: none !important;
+    }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+    :root {
+        --color-bg-dark: #000000;
+        --color-bg-medium: #1a1a1a;
+        --color-text-primary: #ffffff;
+        --color-border: #ffffff;
+    }
+
+    button,
+    input,
+    textarea {
+        border-width: 3px;
+    }
+}
+
+/* Dark Mode (if system preference) */
+@media (prefers-color-scheme: dark) {
+    /* Already dark by default, but can add overrides if needed */
+}
+
+/* Light Mode Override (not recommended for this design) */
+@media (prefers-color-scheme: light) {
+    /* Keep dark theme regardless as it's part of the game aesthetic */
+}

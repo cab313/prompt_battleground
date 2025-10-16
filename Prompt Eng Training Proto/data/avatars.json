@@ -1,0 +1,52 @@
+[
+    {
+        "id": "avatar_1",
+        "name": "Sparkle",
+        "url": "https://api.dicebear.com/7.x/bottts/svg?seed=Sparkle&backgroundColor=b6e3f4"
+    },
+    {
+        "id": "avatar_2",
+        "name": "Bubbles",
+        "url": "https://api.dicebear.com/7.x/bottts/svg?seed=Bubbles&backgroundColor=ffd5dc"
+    },
+    {
+        "id": "avatar_3",
+        "name": "Thunder",
+        "url": "https://api.dicebear.com/7.x/bottts/svg?seed=Thunder&backgroundColor=fff4e6"
+    },
+    {
+        "id": "avatar_4",
+        "name": "Moonlight",
+        "url": "https://api.dicebear.com/7.x/bottts/svg?seed=Moonlight&backgroundColor=e6e6fa"
+    },
+    {
+        "id": "avatar_5",
+        "name": "Sunshine",
+        "url": "https://api.dicebear.com/7.x/bottts/svg?seed=Sunshine&backgroundColor=ffffe0"
+    },
+    {
+        "id": "avatar_6",
+        "name": "Forest",
+        "url": "https://api.dicebear.com/7.x/bottts/svg?seed=Forest&backgroundColor=c8e6c9"
+    },
+    {
+        "id": "avatar_7",
+        "name": "Cosmic",
+        "url": "https://api.dicebear.com/7.x/bottts/svg?seed=Cosmic&backgroundColor=d1c4e9"
+    },
+    {
+        "id": "avatar_8",
+        "name": "Ocean",
+        "url": "https://api.dicebear.com/7.x/bottts/svg?seed=Ocean&backgroundColor=b2ebf2"
+    },
+    {
+        "id": "avatar_9",
+        "name": "Flame",
+        "url": "https://api.dicebear.com/7.x/bottts/svg?seed=Flame&backgroundColor=ffccbc"
+    },
+    {
+        "id": "avatar_10",
+        "name": "Starlight",
+        "url": "https://api.dicebear.com/7.x/bottts/svg?seed=Starlight&backgroundColor=f8bbd0"
+    }
+]

@@ -1,0 +1,98 @@
+[
+    {
+        "id": "first_battle",
+        "name": "Prompt Apprentice",
+        "icon": "🎯",
+        "description": "Complete your first battle",
+        "condition": "battles_completed >= 1",
+        "xpReward": 50
+    },
+    {
+        "id": "battle_winner",
+        "name": "Battle Winner",
+        "icon": "🏆",
+        "description": "Win a round with a score of 7 or higher",
+        "condition": "score >= 7",
+        "xpReward": 100
+    },
+    {
+        "id": "perfect_score",
+        "name": "Perfect Prompt",
+        "icon": "⭐",
+        "description": "Achieve a perfect score of 10",
+        "condition": "score === 10",
+        "xpReward": 200
+    },
+    {
+        "id": "format_wizard",
+        "name": "Format Wizard",
+        "icon": "📝",
+        "description": "Get a format quality score of 2.0 or higher",
+        "condition": "format_score >= 2.0",
+        "xpReward": 75
+    },
+    {
+        "id": "efficient_engineer",
+        "name": "Efficient Engineer",
+        "icon": "⚡",
+        "description": "Complete a battle in under 60 seconds",
+        "condition": "time_taken < 60",
+        "xpReward": 100
+    },
+    {
+        "id": "fast_failer",
+        "name": "Fast Failer",
+        "icon": "🔄",
+        "description": "Quickly iterate - submit 3 battles in one session",
+        "condition": "battles_in_session >= 3",
+        "xpReward": 50
+    },
+    {
+        "id": "consistency_king",
+        "name": "Consistency King",
+        "icon": "👑",
+        "description": "Score 7+ on 5 consecutive battles",
+        "condition": "win_streak >= 5",
+        "xpReward": 250
+    },
+    {
+        "id": "marathon_runner",
+        "name": "Marathon Runner",
+        "icon": "🏃",
+        "description": "Complete 10 battles",
+        "condition": "battles_completed >= 10",
+        "xpReward": 150
+    },
+    {
+        "id": "technical_master",
+        "name": "Technical Master",
+        "icon": "🔧",
+        "description": "Achieve high technical accuracy (2.0+) in 3 battles",
+        "condition": "technical_accuracy_count >= 3",
+        "xpReward": 125
+    },
+    {
+        "id": "level_up_legend",
+        "name": "Level Up Legend",
+        "icon": "📈",
+        "description": "Reach level 5",
+        "condition": "level >= 5",
+        "xpReward": 300
+    },
+    {
+        "id": "xp_collector",
+        "name": "XP Collector",
+        "icon": "💎",
+        "description": "Earn 1000 total XP",
+        "condition": "total_xp >= 1000",
+        "xpReward": 200
+    },
+    {
+        "id": "comeback_kid",
+        "name": "Comeback Kid",
+        "icon": "💪",
+        "description": "Score 8+ after scoring below 5",
+        "condition": "comeback === true",
+        "xpReward": 100
+    }
+]
