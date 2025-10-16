@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Prompt Engineering Battle Royale - Interactive training platform for mastering AI prompt engineering">
+    <title>Prompt Engineering Battle Royale Arena</title>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q98010P7LZ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-Q98010P7LZ');
+        console.log('Google Analytics initialized with ID: G-Q98010P7LZ');
+    </script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/game-arena.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/leaderboard.css">
+    <link rel="stylesheet" href="css/playground.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+
+<body>
+    <div id="app">
+        <!-- Loading Screen -->
+        <div id="loading-screen" class="screen active">
+            <div class="loading-content">
+                <h1 class="glitch" data-text="BATTLE ROYALE">BATTLE ROYALE</h1>
+                <div class="loading-spinner"></div>
+                <p>Initializing Arena...</p>
+            </div>
+        </div>
+
+        <!-- Welcome/Registration Screen -->
+        <div id="welcome-screen" class="screen">
+            <div class="screen-content">
+                <h1 class="game-title">Welcome to the Prompt Engineering Battle Royale</h1>
+                <p class="subtitle">May the best prompt win</p>
+
+                <div class="registration-form">
+                    <h2>Create Your Profile</h2>
+                    <div class="form-group">
+                        <label for="username">Player Name</label>
+                        <input type="text" id="username" placeholder="Enter your name" maxlength="20" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Select Your Avatar</label>
+                        <div id="avatar-selection" class="avatar-grid">
+                            <!-- Avatars populated by JS -->
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="team-name">Team Name (Optional)</label>
+                        <input type="text" id="team-name" placeholder="Enter team name" maxlength="20">
+                    </div>
+
+                    <button id="start-tutorial-btn" class="btn-primary pulse">Begin Training</button>
+                    <button id="skip-tutorial-btn" class="btn-secondary">Skip to Arena</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tutorial Screen -->
+        <div id="tutorial-screen" class="screen">
+            <div class="screen-content">
+                <h1>Training Mission</h1>
+                <div id="tutorial-content" class="tutorial-container">
+                    <!-- Tutorial steps populated by JS -->
+                </div>
+                <div class="tutorial-controls">
+                    <button id="prev-tutorial-btn" class="btn-secondary">Previous</button>
+                    <span id="tutorial-progress">Step 1 of 5</span>
+                    <button id="next-tutorial-btn" class="btn-primary">Next</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Lobby Screen -->
+        <div id="lobby-screen" class="screen">
+            <div class="screen-content">
+                <header class="lobby-header">
+                    <h1>Battle Lobby</h1>
+                    <div class="player-info">
+                        <img id="lobby-avatar" src="" alt="Avatar" class="avatar-small">
+                        <div class="player-stats">
+                            <div class="player-name" id="lobby-player-name"></div>
+                            <div class="player-level" id="lobby-player-level"></div>
+                            <div class="xp-bar">
+                                <div class="xp-fill" id="lobby-xp-fill"></div>
+                            </div>
+                            <div class="xp-text" id="lobby-xp-text"></div>
+                        </div>
+                    </div>
+                </header>
+
+                <div class="lobby-content">
+                    <div class="lobby-main">
+                        <div class="stats-dashboard">
+                            <h2>Your Statistics</h2>
+                            <div class="stat-grid">
+                                <div class="stat-card">
+                                    <div class="stat-value" id="total-battles">0</div>
+                                    <div class="stat-label">Total Battles</div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-value" id="total-wins">0</div>
+                                    <div class="stat-label">Victories</div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-value" id="perfect-scores">0</div>
+                                    <div class="stat-label">Perfect Scores</div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-value" id="win-rate">0%</div>
+                                    <div class="stat-label">Win Rate</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="achievements-preview">
+                            <h2>Recent Achievements</h2>
+                            <div id="recent-achievements" class="achievement-list">
+                                <!-- Populated by JS -->
+                            </div>
+                        </div>
+
+                        <div class="action-area">
+                            <button id="start-battle-btn" class="btn-primary btn-large pulse">Enter Battle Arena</button>
+                            <button id="playground-btn" class="btn-secondary btn-large">🎨 Prompt Playground</button>
+                            <button id="view-profile-btn" class="btn-secondary">View Profile</button>
+                            <button id="view-leaderboard-btn" class="btn-secondary">Leaderboard</button>
+                            <button id="export-data-btn" class="btn-secondary">📤 Export My Data</button>
+                            <button id="sync-leaderboard-btn" class="btn-secondary">🔄 Sync Leaderboard</button>
+                        </div>
+                    </div>
+
+                    <aside class="lobby-sidebar">
+                        <div class="tips-box">
+                            <h3>Quick Tips</h3>
+                            <div id="quick-tips"></div>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </div>
+
+        <!-- Battle Arena Screen -->
+        <div id="battle-screen" class="screen">
+            <div class="battle-hud">
+                <div class="hud-top">
+                    <div class="hud-left">
+                        <button id="return-home-battle" class="btn-icon" title="Return to Lobby">🏠</button>
+                        <div class="round-info">
+                            <span class="label">Round</span>
+                            <span id="current-round" class="value">1</span>
+                        </div>
+                        <div class="score-info">
+                            <span class="label">Score</span>
+                            <span id="session-score" class="value">0</span>
+                        </div>
+                    </div>
+
+                    <div class="hud-center">
+                        <div class="timer-container">
+                            <div id="timer" class="timer">120</div>
+                            <div class="timer-label">seconds</div>
+                        </div>
+                    </div>
+
+                    <div class="hud-right">
+                        <div class="xp-display">
+                            <span class="label">XP</span>
+                            <span id="battle-xp" class="value">0</span>
+                        </div>
+                        <div class="level-display">
+                            <span class="label">Level</span>
+                            <span id="battle-level" class="value">1</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="battle-content">
+                <div class="battle-main">
+                    <!-- Scenario Phase -->
+                    <div id="scenario-phase" class="phase">
+                        <div class="scenario-container">
+                            <h2 class="scenario-title" id="scenario-title"></h2>
+                            <div class="scenario-description" id="scenario-description"></div>
+                            <div class="scenario-criteria" id="scenario-criteria"></div>
+                            <div class="scenario-data" id="scenario-data"></div>
+                            <div class="countdown-overlay">
+                                <div class="countdown-text">Battle begins in <span id="scenario-countdown">15</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Prompt Crafting Phase -->
+                    <div id="crafting-phase" class="phase hidden">
+                        <div class="crafting-container">
+                            <div class="scenario-reminder">
+                                <h3 id="crafting-scenario-title"></h3>
+                                <button id="view-scenario-details" class="btn-link">View Details</button>
+                            </div>
+
+                            <div class="prompt-editor">
+                                <div class="editor-header">
+                                    <label for="prompt-input">Craft Your Prompt</label>
+                                    <div class="editor-stats">
+                                        <span id="char-count">0</span> characters
+                                        <span class="separator">|</span>
+                                        <span id="token-estimate">~0</span> tokens
+                                    </div>
+                                </div>
+                                <textarea id="prompt-input"
+                                    placeholder="Enter your prompt here...&#10;&#10;Tips:&#10;- Be specific and clear&#10;- Use structured formatting&#10;- Define the role and output format&#10;- Include examples if helpful"
+                                    maxlength="2000"></textarea>
+                            </div>
+
+                            <div class="power-ups-section" id="power-ups-section">
+                                <h4>Available Power-Ups</h4>
+                                <div id="power-ups-list" class="power-ups-grid">
+                                    <!-- Populated by JS -->
+                                </div>
+                            </div>
+
+                            <div class="poor-prompt-section" id="poor-prompt-section">
+                                <div class="panel"
+                                    style="background-color: rgba(255, 68, 68, 0.1); border-color: var(--color-danger);">
+                                    <div class="panel-header">
+                                        <h4 style="color: var(--color-danger); margin: 0;">❌ Example of a POOR Prompt
+                                        </h4>
+                                        <button id="show-poor-prompt-btn" class="btn-small btn-secondary">Show Poor
+                                            Example</button>
+                                    </div>
+                                    <div id="poor-prompt-content" class="hidden" style="margin-top: var(--spacing-md);">
+                                        <div
+                                            style="background-color: var(--color-bg-dark); padding: var(--spacing-md); border-radius: var(--radius-md); margin-bottom: var(--spacing-md);">
+                                            <code id="poor-prompt-text"
+                                                style="color: var(--color-text-secondary);"></code>
+                                        </div>
+                                        <div id="poor-prompt-issues"
+                                            style="color: var(--color-text-secondary); font-size: var(--font-size-sm);">
+                                        </div>
+                                        <button id="use-poor-prompt-btn" class="btn-secondary btn-small"
+                                            style="margin-top: var(--spacing-sm);">
+                                            📝 Start with this (Learn by Improving)
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="action-buttons">
+                                <button id="analyze-prompt-btn" class="btn-secondary">
+                                    <span class="icon">🔍</span> Analyze Prompt
+                                </button>
+                                <button id="submit-prompt-btn" class="btn-primary btn-large">
+                                    <span class="icon">⚔️</span> Submit Prompt
+                                </button>
+                            </div>
+
+                            <div id="analysis-result" class="analysis-panel hidden">
+                                <h4>Prompt Analysis</h4>
+                                <div id="analysis-content"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Evaluation Phase -->
+                    <div id="evaluation-phase" class="phase hidden">
+                        <div class="evaluation-container">
+                            <div class="evaluation-animation">
+                                <div class="spinner-large"></div>
+                                <h2>Evaluating Your Prompt...</h2>
+                                <p id="evaluation-status">Analyzing prompt quality...</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Results Phase -->
+                    <div id="results-phase" class="phase hidden">
+                        <div class="results-container">
+                            <div class="score-reveal">
+                                <h2>Round Complete!</h2>
+                                <div class="score-display">
+                                    <div class="score-label">Your Score</div>
+                                    <div class="score-value" id="round-score">0</div>
+                                    <div class="score-max">/ 10</div>
+                                </div>
+                            </div>
+
+                            <div class="score-breakdown">
+                                <h3>Score Breakdown</h3>
+                                <div class="breakdown-grid">
+                                    <div class="breakdown-item">
+                                        <div class="breakdown-label">AI Evaluation</div>
+                                        <div class="breakdown-value" id="score-ai">0</div>
+                                        <div class="breakdown-bar">
+                                            <div class="breakdown-fill" id="fill-ai"></div>
+                                        </div>
+                                    </div>
+                                    <div class="breakdown-item">
+                                        <div class="breakdown-label">Format Quality</div>
+                                        <div class="breakdown-value" id="score-format">0</div>
+                                        <div class="breakdown-bar">
+                                            <div class="breakdown-fill" id="fill-format"></div>
+                                        </div>
+                                    </div>
+                                    <div class="breakdown-item">
+                                        <div class="breakdown-label">Efficiency</div>
+                                        <div class="breakdown-value" id="score-efficiency">0</div>
+                                        <div class="breakdown-bar">
+                                            <div class="breakdown-fill" id="fill-efficiency"></div>
+                                        </div>
+                                    </div>
+                                    <div class="breakdown-item">
+                                        <div class="breakdown-label">Technical Accuracy</div>
+                                        <div class="breakdown-value" id="score-technical">0</div>
+                                        <div class="breakdown-bar">
+                                            <div class="breakdown-fill" id="fill-technical"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="ai-output">
+                                <h3>AI Response to Your Prompt</h3>
+                                <div id="ai-output-content" class="output-display"></div>
+                            </div>
+
+                            <div class="feedback-section">
+                                <h3>Feedback & Tips</h3>
+                                <div id="feedback-content"></div>
+                            </div>
+
+                            <div class="rewards-section">
+                                <div class="xp-earned">
+                                    <span class="label">XP Earned:</span>
+                                    <span id="xp-earned" class="value">+0</span>
+                                </div>
+                                <div id="achievements-earned" class="achievements-earned hidden">
+                                    <h4>🏆 Achievements Unlocked!</h4>
+                                    <div id="new-achievements"></div>
+                                </div>
+                            </div>
+
+                            <div class="next-actions">
+                                <button id="next-round-btn" class="btn-primary btn-large">Next Round</button>
+                                <button id="end-battle-btn" class="btn-secondary">Return to Lobby</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <aside class="battle-sidebar">
+                    <div class="sidebar-section">
+                        <h3>Current Challenge</h3>
+                        <div id="challenge-info"></div>
+                    </div>
+
+                    <div class="sidebar-section">
+                        <h3>Your Stats</h3>
+                        <div class="stat-list">
+                            <div class="stat-row">
+                                <span>Battles Today:</span>
+                                <span id="battles-today">0</span>
+                            </div>
+                            <div class="stat-row">
+                                <span>Best Score:</span>
+                                <span id="best-score">0</span>
+                            </div>
+                            <div class="stat-row">
+                                <span>Streak:</span>
+                                <span id="current-streak">0</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-section">
+                        <h3>Achievements</h3>
+                        <div id="sidebar-achievements" class="achievement-badges">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+
+        <!-- Leaderboard Screen -->
+        <div id="leaderboard-screen" class="screen">
+            <div class="screen-content">
+                <h1>Global Leaderboard</h1>
+
+                <div class="leaderboard-filters">
+                    <button class="filter-btn active" data-filter="xp">By XP</button>
+                    <button class="filter-btn" data-filter="wins">By Wins</button>
+                    <button class="filter-btn" data-filter="perfect">By Perfect Scores</button>
+                </div>
+
+                <div class="leaderboard-table">
+                    <div class="leaderboard-header">
+                        <div class="rank-col">Rank</div>
+                        <div class="player-col">Player</div>
+                        <div class="level-col">Level</div>
+                        <div class="stat-col">XP</div>
+                        <div class="stat-col">Wins</div>
+                        <div class="stat-col">Perfect Scores</div>
+                    </div>
+                    <div id="leaderboard-body" class="leaderboard-body">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <button id="back-to-lobby-btn" class="btn-secondary">Back to Lobby</button>
+            </div>
+        </div>
+
+        <!-- Playground Screen -->
+        <div id="playground-screen" class="screen">
+            <div class="screen-content">
+                <header class="playground-header">
+                    <h1>🎨 Prompt Playground</h1>
+                    <p class="subtitle">Practice and refine your prompts without pressure</p>
+                    <button id="return-lobby-playground" class="btn-icon" style="position: absolute; top: 20px; left: 20px;" title="Return to Lobby">🏠</button>
+                </header>
+
+                <div class="playground-layout">
+                    <div class="playground-main">
+                        <div class="playground-editor">
+                            <div class="form-group">
+                                <label for="playground-context">Context (Optional)</label>
+                                <input type="text" id="playground-context" placeholder="What are you trying to accomplish with this prompt?" maxlength="200">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="playground-prompt">Your Prompt</label>
+                                <div class="editor-stats" style="margin-bottom: 8px;">
+                                    <span id="pg-char-count">0</span> characters
+                                    <span class="separator">|</span>
+                                    <span id="pg-token-estimate">~0</span> tokens
+                                </div>
+                                <textarea
+                                    id="playground-prompt"
+                                    placeholder="Paste your prompt here for review...&#10;&#10;The AI will analyze:&#10;- Clarity and specificity&#10;- Structure and formatting&#10;- Role definition&#10;- Output format specification&#10;- Areas for improvement"
+                                    rows="12"
+                                ></textarea>
+                            </div>
+
+                            <div class="playground-actions">
+                                <button id="pg-review-btn" class="btn-primary btn-large">
+                                    <span class="icon">🔍</span> Get Feedback
+                                </button>
+                                <button id="pg-clear-btn" class="btn-secondary">Clear</button>
+                                <button id="pg-save-btn" class="btn-secondary">💾 Save to History</button>
+                            </div>
+                        </div>
+
+                        <div id="pg-feedback-section" class="playground-feedback hidden">
+                            <h3>📊 Analysis & Feedback</h3>
+
+                            <div class="feedback-card">
+                                <h4 style="color: var(--color-success);">✅ Strengths</h4>
+                                <div id="pg-strengths"></div>
+                            </div>
+
+                            <div class="feedback-card">
+                                <h4 style="color: var(--color-warning);">💡 Suggestions for Improvement</h4>
+                                <div id="pg-improvements"></div>
+                            </div>
+
+                            <div class="feedback-card">
+                                <h4 style="color: var(--color-primary);">🎯 Specific Recommendations</h4>
+                                <div id="pg-recommendations"></div>
+                            </div>
+
+                            <div class="quality-score">
+                                <h4>Overall Quality Score</h4>
+                                <div class="score-display-pg">
+                                    <div class="score-value-pg" id="pg-quality-score">-</div>
+                                    <div class="score-max-pg">/ 10</div>
+                                </div>
+                                <div class="score-label-pg" id="pg-quality-label"></div>
+                            </div>
+
+                            <div class="improved-version" id="pg-improved-section" style="display: none;">
+                                <h4 style="color: var(--color-accent);">✨ Improved Version</h4>
+                                <div id="pg-improved-prompt" style="background-color: var(--color-bg-dark); padding: 15px; border-radius: 8px; border: 2px solid var(--color-accent); white-space: pre-wrap; font-family: monospace; font-size: 0.875rem; line-height: 1.6;"></div>
+                                <button id="pg-copy-improved-btn" class="btn-secondary btn-small" style="margin-top: 10px;">📋 Copy Improved Version</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <aside class="playground-sidebar">
+                        <div class="sidebar-section">
+                            <h3>📚 Prompt Tips</h3>
+                            <div class="tips-list">
+                                <div class="tip-item">
+                                    <strong>Role Definition:</strong> Start with "You are a [role]"
+                                </div>
+                                <div class="tip-item">
+                                    <strong>Be Specific:</strong> Clear instructions yield better results
+                                </div>
+                                <div class="tip-item">
+                                    <strong>Output Format:</strong> Specify how you want the response
+                                </div>
+                                <div class="tip-item">
+                                    <strong>Use Examples:</strong> Show what you want
+                                </div>
+                                <div class="tip-item">
+                                    <strong>Set Constraints:</strong> Word count, tone, style
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sidebar-section">
+                            <h3>📖 Your Review History</h3>
+                            <div id="pg-history-list" class="history-list-pg">
+                                <div class="empty-state-text">No reviews yet</div>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile Screen -->
+        <div id="profile-screen" class="screen">
+            <div class="screen-content">
+                <h1>Player Profile</h1>
+
+                <div class="profile-layout">
+                    <div class="profile-main">
+                        <div class="profile-header">
+                            <img id="profile-avatar" src="" alt="Avatar" class="avatar-large">
+                            <div class="profile-info">
+                                <h2 id="profile-name"></h2>
+                                <div id="profile-team" class="team-name"></div>
+                                <div class="level-info">
+                                    <div id="profile-level" class="level-badge"></div>
+                                    <div class="xp-progress">
+                                        <div class="xp-bar-large">
+                                            <div class="xp-fill-large" id="profile-xp-fill"></div>
+                                        </div>
+                                        <div id="profile-xp-text" class="xp-text-large"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="profile-stats">
+                            <h3>Battle Statistics</h3>
+                            <div class="stats-grid">
+                                <div class="stat-card-large">
+                                    <div class="stat-icon">⚔️</div>
+                                    <div class="stat-value" id="profile-battles">0</div>
+                                    <div class="stat-label">Total Battles</div>
+                                </div>
+                                <div class="stat-card-large">
+                                    <div class="stat-icon">🏆</div>
+                                    <div class="stat-value" id="profile-wins">0</div>
+                                    <div class="stat-label">Victories</div>
+                                </div>
+                                <div class="stat-card-large">
+                                    <div class="stat-icon">⭐</div>
+                                    <div class="stat-value" id="profile-perfect">0</div>
+                                    <div class="stat-label">Perfect Scores</div>
+                                </div>
+                                <div class="stat-card-large">
+                                    <div class="stat-icon">📈</div>
+                                    <div class="stat-value" id="profile-winrate">0%</div>
+                                    <div class="stat-label">Win Rate</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="battle-history">
+                            <h3>Recent Battles</h3>
+                            <div id="battle-history-list" class="history-list">
+                                <!-- Populated by JS -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <aside class="profile-sidebar">
+                        <div class="achievements-section">
+                            <h3>Achievements</h3>
+                            <div id="profile-achievements" class="achievement-grid">
+                                <!-- Populated by JS -->
+                            </div>
+                        </div>
+
+                        <div class="power-ups-inventory">
+                            <h3>Power-Ups</h3>
+                            <div id="profile-powerups" class="powerup-grid">
+                                <!-- Populated by JS -->
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+
+                <div class="profile-actions">
+                    <button id="edit-profile-btn" class="btn-primary">✏️ Edit Profile</button>
+                    <button id="back-to-lobby-profile-btn" class="btn-secondary">Back to Lobby</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Overlay -->
+        <div id="modal-overlay" class="modal-overlay hidden">
+            <div class="modal-content">
+                <button class="modal-close" id="modal-close">&times;</button>
+                <div id="modal-body"></div>
+            </div>
+        </div>
+
+        <!-- Notification Toast -->
+        <div id="notification-toast" class="notification-toast hidden">
+            <div class="toast-content"></div>
+        </div>
+    </div>
+
+    <!-- JavaScript Modules -->
+    <script type="module" src="js/main.js"></script>
+</body>
+
+</html>
